@@ -50,13 +50,15 @@ class _QuizScreenState extends State<QuizScreen> {
                       IconButton(
                         icon: const Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () => setState(() {
-                          index == 0
-                              ? Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const StartScreen()))
-                              : index--;
+                          if (index == 0) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const StartScreen()));
+                          } else {
+                            index--;
+                            userAnswers.removeAt(index);
+                          }
                         }),
                       ),
                       Text(
@@ -69,6 +71,7 @@ class _QuizScreenState extends State<QuizScreen> {
                             color: Colors.white),
                         onPressed: () => setState(() {
                           index++;
+                          userAnswers.add('');
                         }),
                       )
                     ],

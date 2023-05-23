@@ -30,12 +30,12 @@ class QuestionSummaryWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               TextWidget(item["question"], fontStyleNumber: 2),
-                              Text(item["question_answer"],
+                              Text("Answer: ${item["question_answer"]}",
                                   style: const TextStyle(
                                       color:
                                           Color.fromARGB(255, 219, 197, 255))),
                               Text(
-                                item["user_answer"],
+                                "Your Answer: ${item["user_answer"]}",
                                 style: const TextStyle(
                                     color: Color.fromARGB(255, 163, 213, 253)),
                               )
