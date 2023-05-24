@@ -32,6 +32,17 @@ class _QuizScreenState extends State<QuizScreen> {
     return summaryStatistics;
   }
 
+  int get userScore {
+    for (int i = 0; i < summaryStatistics.length; i++) {
+      if (summaryStatistics[i]["question_answer"] ==
+          summaryStatistics[i]["user_answer"]) {
+        score++;
+      }
+    }
+
+    return score;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,9 +96,6 @@ class _QuizScreenState extends State<QuizScreen> {
                         (item) => FilledButton(
                           onPressed: () => setState(() {
                             userAnswers.add(item);
-                            if (item == questionsData[index].answerList[0]) {
-                              score++;
-                            }
                             index++;
                           }),
                           style: FilledButton.styleFrom(
@@ -107,7 +115,7 @@ class _QuizScreenState extends State<QuizScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                   TextWidget(
-                      "You answered $score out of ${questionsData.length} questions correctly!",
+                      "You answered $userScore out of ${questionsData.length} questions correctly!",
                       fontStyleNumber: 0),
                   const SizedBox(
                     height: 14,
